@@ -3,6 +3,13 @@
 The files contained in this repository have been helpful tools for building
 multimple versions of R on my machines, using CI, and building packages.
 
+A very helpful step for setup for the first time
+
+    apt-get build-dep r-base-dev
+
+This will install all the dependencies needed for the base R package without
+installing R from aptitude. 
+
 ## Files
 
 ### `get_released.sh` 
