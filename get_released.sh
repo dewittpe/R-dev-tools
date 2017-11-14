@@ -18,7 +18,7 @@ fi
 /bin/rm -rf R-$version
 tar -xvf R-$version.tar.gz
 cd R-$version
-./configure --with-blas --with-lapack
+./configure --with-blas --with-lapack --enable-R-shlib --enable-BLAS-shlib --with-x --with-cairo --with-readline --with-libtiff --with-libpng --with-jpeglib
 make
 make pdf
 make info
