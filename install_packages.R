@@ -1,55 +1,21 @@
-options(download.file.method = "wget")
-options(warn = 2)
+# options(download.file.method = "wget")
+# options(warn = 2)
+options(repos = c(CRAN = "https://cran.rstudio.com",
+                  BIOC = "https://bioconductor.org/packages/release/bioc/"))
+library(colorout)
 
-pkgs <-
-  c("acepack",
-    "broom",
-    "BH",
-    "caTools",
-    "choroplethr",
-    "cpr",
-    "devtools",
-    "DoE.base",
-    "dplyr",
-    "ggplot2",
-    "ggforce",
-    "ggmap",
-    "gmodels",
-    "gridExtra",
-    "gtable",
-    "inline",
-    "knitr",
-    "lme4",
-    "qwraps2",
-    "Rcpp",
-    "RcppArmadillo",
-    "readr",
-    "readxl",
-    "rmarkdown",
-    "roxygen2",
-    "shiny",
-    "sf",
-    "sp",
-    "testthat",
-    "tictoc",
-    "tidyr",
-    "tidyverse",
-    "withr",
-    "xtable",
-    "yaml")
+# setHook(packageEvent("grDevices", "onLoad"),
+#         function(...) grDevices::X11.options(type='cairo'))
+# options(device='x11')
 
-unavailable_pkgs <- c()
-pkgs <- pkgs[!(pkgs %in% rownames(installed.packages()))]
+old_lib <- commandArgs(trailingOnly = TRUE)
+old_pkgs <- list.files(old_lib)
 
-while( length(pkgs) > 0 ) {
-  x <- try(install.packages(pkgs[1], repos = "https://cran.rstudio.com"))
-  
-  if (class(x) == "try-error") {
-    unavailable_pkgs <- append(unavailable_pkgs, pkgs[1])
-    pkgs <- pkgs[-1]
-  }
-  pkgs <- pkgs[!(pkgs %in% rownames(installed.packages()))]
-} 
+if (!("devtools" %in% rownames(available.packages()))) {
+  install.packages("devtools", repos = "https://cran.rstudio.com")
+}
 
-pkgs
-unavailable_pkgs
+for (p in old_pkgs) {
+  try(devtools::install_cran(p), silent = TRUE)
+}
+
