@@ -11,7 +11,7 @@ library(colorout)
 old_lib <- commandArgs(trailingOnly = TRUE)
 old_pkgs <- list.files(old_lib)
 
-if (!("devtools" %in% rownames(available.packages()))) {
+if (!("devtools" %in% rownames(installed.packages()))) {
   install.packages("devtools", repos = "https://cran.rstudio.com")
 }
 
