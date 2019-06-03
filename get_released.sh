@@ -10,7 +10,7 @@ version=$1
 /bin/rm -f R-$version.tar.gz
 
 if [ "$version" == "devel" ]; then
-  wget https://stat.ethz.ch/R/daily/R-devel.tar.gz
+  wget https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz
 else
   wget https://cran.r-project.org/src/base/R-3/R-$version.tar.gz
 fi
