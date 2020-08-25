@@ -12,7 +12,7 @@ version=$1
 if [ "$version" == "devel" ]; then
   wget https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz
 else
-  wget https://cran.r-project.org/src/base/R-3/R-$version.tar.gz
+  wget https://cran.r-project.org/src/base/R-4/R-$version.tar.gz
 fi
 
 /bin/rm -rf R-$version
